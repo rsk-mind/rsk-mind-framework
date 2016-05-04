@@ -12,9 +12,9 @@ setup(
     author='RSK Mind',
     author_email='',
     license='MIT',
-    packages=['rsk_mind', 'rsk_mind.engine', 'rsk_mind.input',
+    packages=['rsk_mind', 'rsk_mind.engine', 'rsk_mind.datasource',
               'rsk_mind.classifier', 'rsk_mind.transformer',
-              'rsk_mind.transformer.filter'],
+              'rsk_mind.filter', 'rsk_mind.dataset'],
     # dependent packages
     install_requires=[
             'numpy',
