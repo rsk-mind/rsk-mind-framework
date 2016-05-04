@@ -1,5 +1,7 @@
 from .input import Input
 
+import csv
+
 
 class CSVInput(Input):
 
@@ -12,8 +14,6 @@ class CSVInput(Input):
     def read(self):
         """ """
         with open(self.path, 'rb') as csvfile:
-            import csv
-            print csv
             rows_reader = csv.reader(csvfile)
 
             if self.has_header:
@@ -21,13 +21,3 @@ class CSVInput(Input):
 
             for row in rows_reader:
                 self.rows.append(row)
-
-
-    def transform(self, transformer, output=None):
-        """ """
-        raise NotImplementedError("")
-
-
-    def classify(self, classifier, output=None):
-        """ """
-        raise NotImplementedError("")
