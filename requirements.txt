@@ -1,0 +1,15 @@
+# for documentation
+Sphinx
+
+
+# for mathematics
+numpy
+# for OSX users: scipy needs a fortran compiler so do `brew install gfortran`
+scipy
+
+# for deep learning
+xgboost==0.4a30
+
+
+# for GeoIP
+geoip2
