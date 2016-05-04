@@ -1,1 +1,2 @@
-George Theofilis \n Kostantinos Kostis
+George Theofilis
+Kostantinos Kostis
