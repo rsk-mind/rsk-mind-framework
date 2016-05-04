@@ -19,8 +19,8 @@ class CSVDatasource(Datasource):
 
     def write(self, dataset):
         with open(self.path, 'w') as outfile:
-
-            print >> outfile, ",".join(dataset.header)
-
-            for row in dataset.rows:
-                print >> outfile, ",".join(row)
+            writer = csv.writer(outfile)
+            writer.writerow(dataset.transformed_header)
+            
+            for row in dataset.transformed_rows:
+                writer.writerow(row)
