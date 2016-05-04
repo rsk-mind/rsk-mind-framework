@@ -1,14 +1,11 @@
-from .input import Input
+from . import Datasource
 
 import csv
 
-
-class CSVInput(Input):
+class CSVDatasource(Datasource):
 
     def __init__(self, path, has_header=True):
         self.path = path
-        self.has_header = has_header
-        self.rows = []
 
 
     def read(self):
@@ -21,3 +18,6 @@ class CSVInput(Input):
 
             for row in rows_reader:
                 self.rows.append(row)
+
+    def write(self, dataset):
+        pass
