@@ -8,9 +8,11 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 def startapp(project_name):
-    template = JINJA_ENVIRONMENT.get_template('project_template/manager.jinja2')
-    print 'Generate machine learning project'
+    tmpls = ['manager.jinja2', 'transformer.jinja2', 'setting.jinja2']
+    for tmpl in tmpls:
+        template = JINJA_ENVIRONMENT.get_template('project_template/%s' % tmpl)
 
+        print template.render()
 
 def execute_from_command_line(argv):
     argv = argv[1:]
