@@ -8,11 +8,19 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 def startapp(project_name):
-    tmpls = ['manager.jinja2', 'transformer.jinja2', 'setting.jinja2']
-    for tmpl in tmpls:
-        template = JINJA_ENVIRONMENT.get_template('project_template/%s' % tmpl)
+    top_dir = os.path.join(os.getcwd(), project_name)
+    if not os.path.exists(top_dir):
+        os.makedirs(top_dir)
+    else:
+        pass
 
-        print template.render()
+    tmpls = ['manager.py.jinja2', 'transformer.py.jinja2', 'setting.py.jinja2']
+    for tmpl in tmpls:
+        content = JINJA_ENVIRONMENT \
+            .get_template('project_template/%s' % tmpl).render()
+
+        with open(os.path.join(top_dir, tmpl.replace('.jinja2', '')), 'w') as outfile:
+            outfile.write(content)
 
 def execute_from_command_line(argv):
     argv = argv[1:]
