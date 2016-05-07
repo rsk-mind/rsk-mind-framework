@@ -24,7 +24,7 @@ setup(
             'xgboost==0.4a30',
             'geoip2',
             'scikit-learn',
-            'Jinja2'
+            'jinja2'
     ],
     extras_require={
             'docs': ['sphinx'],
