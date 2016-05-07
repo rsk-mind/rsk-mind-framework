@@ -1,2 +1,3 @@
 from datasource import Datasource
 from datasource_csv import CSVDatasource
+from datasource_svmlight import SVMLightDatasource

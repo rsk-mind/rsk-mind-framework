@@ -27,7 +27,8 @@ setup(
             'Jinja2'
     ],
     extras_require={
-            'docs': ['sphinx']
+            'docs': ['sphinx'],
+            'tests': ['nose']
     },
     zip_safe=False
 )
