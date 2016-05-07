@@ -1,2 +1,4 @@
 class Transformer(object):
-    pass
+
+    def default(self, feat):
+        return [feat]

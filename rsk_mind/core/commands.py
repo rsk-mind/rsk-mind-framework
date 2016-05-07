@@ -11,7 +11,7 @@ def transformation(setting):
     datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
     dataset = datasource.read()
 
-    dataset.setTransformer(setting.TRANSFORMER)
+    dataset.setTransformer(setting.TRANSFORMER())
     dataset.applyTransformations()
 
     datasource = DATASOURCE['OUT']['class'](*DATASOURCE['OUT']['params'])
