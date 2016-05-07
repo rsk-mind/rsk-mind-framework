@@ -19,12 +19,12 @@ setup(
     include_package_data=True,
     packages=find_packages(exclude=('tests', 'tests.*')),
     install_requires=[
-            'numpy',
-            'scipy',
             'xgboost==0.4a30',
             'geoip2',
             'scikit-learn',
-            'Jinja2'
+            'scipy',
+            'Jinja2',
+            'numpy'
     ],
     extras_require={
             'docs': ['sphinx']
