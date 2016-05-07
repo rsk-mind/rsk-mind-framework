@@ -1,6 +1,10 @@
 import argparse, os
 
 
+def update_engine(setting):
+    pass
+
+
 def transformation(setting):
     DATASOURCE = setting.DATASOURCE
 
@@ -20,5 +24,5 @@ def execute_from_command_line(argv, setting):
 
     if params.command == 'transformation':
         transformation(setting)
-    else:
-        pass
+    elif params.command == 'update-engine':
+        update_engine(setting)
