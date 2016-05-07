@@ -1,13 +1,13 @@
 from nose.tools import assert_equals
-from ..datasource import CSVDatasource
-from ..dataset import Dataset
+from rsk_mind.datasource import CSVDatasource
+from rsk_mind.dataset import Dataset
 import os
 
 class TestCsvDatasource:
 
     def setUp(self):
-        self.in_path = os.path.join(os.getcwd(),'rsk_mind/tests/files/in.csv')
-        self.out_path = os.path.join(os.getcwd(),'rsk_mind/tests/files/out.csv')
+        self.in_path = os.path.join(os.getcwd(),'tests/files/in.csv')
+        self.out_path = os.path.join(os.getcwd(),'tests/files/out.csv')
 
     def tearDown(self):
         # delete the out file if it exists

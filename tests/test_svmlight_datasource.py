@@ -1,13 +1,13 @@
 from nose.tools import assert_equals
-from ..datasource import SVMLightDatasource
-from ..dataset import Dataset
+from rsk_mind.datasource import SVMLightDatasource
+from rsk_mind.dataset import Dataset
 import os
 
 class TestSVMLightDatasource:
 
     def setUp(self):
-        self.in_path = os.path.join(os.getcwd(),'rsk_mind/tests/files/in.dat')
-        self.out_path = os.path.join(os.getcwd(),'rsk_mind/tests/files/out.dat')
+        self.in_path = os.path.join(os.getcwd(),'tests/files/in.dat')
+        self.out_path = os.path.join(os.getcwd(),'tests/files/out.dat')
 
     def tearDown(self):
         # delete the out file if it exists
@@ -45,4 +45,3 @@ class TestSVMLightDatasource:
         response = os.path.exists(self.out_path) and os.path.isfile(self.out_path)
 
         assert_equals(response, True)
-
