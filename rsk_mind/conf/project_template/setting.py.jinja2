@@ -1,0 +1,16 @@
+from rsk_mind.datasource import *
+
+from transformer import CustomTransformer
+
+DATASOURCE= {
+  'IN' : {
+    'class' : CSVDatasource,
+    'params' : ('in.csv', )
+  },
+  'OUT' : {
+    'class' : CSVDatasource,
+    'params' : ('out.csv', )
+  }
+}
+
+TRANSFORMER = CustomTransformer
