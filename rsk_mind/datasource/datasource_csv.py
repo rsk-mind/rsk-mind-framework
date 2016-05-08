@@ -17,7 +17,10 @@ class CSVDatasource(Datasource):
             rows = []
             for row in reader:
                 if self.target is not None:
-                    index = header.index(self.target)
+                    try:
+                        index = header.index(self.target)
+                    except:
+                        raise Exception('Target class not found')
                     target = row[index]
                     del row[index]
                     row += [target]
