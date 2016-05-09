@@ -10,7 +10,7 @@ class Feat(object):
 
     def transform(self, x):
         fun = getattr(self.parent, 'get_%s' % self.field_name)
-        return fun(self.parent, x)
+        return fun(x)
 
 class CompositeFeat(Feat):
 

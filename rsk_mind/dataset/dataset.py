@@ -26,25 +26,23 @@ class Dataset():
         else:
             transformed_row = []
             transformed_header = []
-            for i, cell in enumerate(row):
-                feat = self.header[i]
+
+            for feat in self.transformer.get_fields():
                 try:
-                    mytrans = getattr(self.transformer, feat)
+                    i = self.header.index(feat)
+                    trans_feat = getattr(self.transformer.Fields, feat).transform(row[i])
+
+                    if self.transformed_header is None:
+                        if len(trans_feat) == 1:
+                            transformed_header.append(feat)
+                        else:
+                            for j in range(len(transformed_feat)):
+                                transformed_header.append("%s_%s" % (feat, j))
+
+                    transformed_row += transformed_feat
                 except:
-                    mytrans = self.transformer.default
-
-                transformed_feat = mytrans(cell)
-
-                if self.transformed_header is None:
-                    if len(transformed_feat) == 0:
-                        pass
-                    elif len(transformed_feat) == 1:
-                        transformed_header.append(feat)
-                    else:
-                        for j in range(len(transformed_feat)):
-                            transformed_header.append("%s_%s" % (feat, j))
-
-                transformed_row += transformed_feat
+                    # composite feat
+                    pass
 
         if self.transformed_header is None:
             self.transformed_header = transformed_header
