@@ -21,11 +21,11 @@ class Dataset():
     def applyRowTransformation(self, row):
         """ """
         if self.transformer == None:
-            transformed_row = row
+            self.transformed_rows += [row]
             transformed_header = self.header
         else:
-            transformed_row = []
-            transformed_header = []
+            transformed_row = row
+            transformed_header = self.header
 
             for feat in self.transformer.get_fields():
                 try:
@@ -36,14 +36,12 @@ class Dataset():
                         if len(trans_feat) == 1:
                             transformed_header.append(feat)
                         else:
-                            for j in range(len(transformed_feat)):
+                            for j in range(len(trans_feat)):
                                 transformed_header.append("%s_%s" % (feat, j))
 
-                    transformed_row += transformed_feat
                 except:
                     # composite feat
                     pass
 
         if self.transformed_header is None:
             self.transformed_header = transformed_header
-        self.transformed_rows += [transformed_row]
