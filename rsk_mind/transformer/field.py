@@ -17,3 +17,11 @@ class CompositeFeat(Feat):
     def __init__(self, attrs):
         super(CompositeFeat, self).__init__()
         self.attrs = attrs
+
+    def transform(self, header, row):
+        args = []
+        for attr in self.attrs:
+            args.append(row[header.index(attr)])
+
+        fun = getattr(self.parent, 'get_%s' % self.field_name)
+        return fun(*args)

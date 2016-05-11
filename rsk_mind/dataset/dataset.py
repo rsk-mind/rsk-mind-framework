@@ -31,17 +31,17 @@ class Dataset():
                 try:
                     i = self.header.index(feat)
                     trans_feat = getattr(self.transformer.Fields, feat).transform(row[i])
-                    transformed_row += trans_feat
-                    if self.transformed_header is None:
-                        if len(trans_feat) == 1:
-                            transformed_header.append(feat)
-                        else:
-                            for j in range(len(trans_feat)):
-                                transformed_header.append("%s_%s" % (feat, j))
-
                 except:
-                    # composite feat
-                    pass
+                    trans_feat = getattr(self.transformer.Fields, feat).transform(self.header, row)
+
+                transformed_row += trans_feat
+
+                if self.transformed_header is None:
+                    if len(trans_feat) == 1:
+                        transformed_header.append(feat)
+                    else:
+                        for j in range(len(trans_feat)):
+                            transformed_header.append("%s_%s" % (feat, j))
 
             for i, feat in enumerate(self.header):
                 if feat not in self.transformer.get_fields():
