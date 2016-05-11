@@ -24,7 +24,18 @@ class CSVDatasource(Datasource):
                     target = row[index]
                     del row[index]
                     row += [target]
+
                 rows.append(row)
+
+            if self.target is not None:
+                try:
+                    index = header.index(self.target)
+
+                    tmp = header[index]
+                    del header[index]
+                    header += [tmp]
+                except:
+                    raise Exception('Target class not found')
 
         return Dataset(header, rows)
 
