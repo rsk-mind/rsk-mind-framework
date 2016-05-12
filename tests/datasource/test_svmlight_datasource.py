@@ -25,16 +25,18 @@ class TestSVMLightDatasource:
         _rows = svm_dataset.rows
 
         # check header length
-        assert_equals(len(_header),5)
+        assert_equals(len(_header), 5)
 
         # check number of rows
         assert_equals(len(_rows), 3)
 
     def test_write(self):
         # create a dataset
-        _header = ['feat0','feat1','feat2','target']
-        _rows = [[0,1,0,0], [1,1,0,1]]
+        _header = ['feat0', 'feat1', 'feat2', 'target']
+        _rows = [[0, 1, 0, 0], [1, 1, 0, 1]]
         svm_dataset = Dataset(_header, _rows)
+        svm_dataset.transformed_header = _header
+        svm_dataset.transformed_rows = _rows
 
         svm_dsrc = SVMLightDatasource(self.out_path)
 
