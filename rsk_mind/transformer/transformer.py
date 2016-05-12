@@ -2,7 +2,6 @@ class Transformer(object):
 
     class Feats():
         exclude = None
-        pass
 
     def __init__(self):
         for field in self.get_feats():
