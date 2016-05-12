@@ -1,0 +1,19 @@
+% This is a sample arff file used for testing
+% There are four attributes named a1, a2, a3, a4
+% and two classes 1 or 0. The class attribute is
+% called target.
+
+% Attributes section
+@RELATION test_relation
+
+@attribute a1 real
+@attribute a2 real
+@attribute a3 real
+@attribute a4 real
+@attribute target real
+
+% Data section
+@DATA
+0,0,0,0,1
+1,1,0,1,0
+1,0,0,1,0
