@@ -46,6 +46,7 @@ class Dataset():
             for i, feat in enumerate(self.header):
                 if feat not in self.transformer.get_fields():
                     transformed_row.append(row[i])
+                    transformed_header.append(feat)
 
         if self.transformed_header is None:
             self.transformed_header = transformed_header
