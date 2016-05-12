@@ -22,7 +22,7 @@ class Dataset():
         """ """
         if self.transformer == None:
             self.transformed_rows += [row]
-            transformed_header = self.header
+            self.transformed_header = self.header
         else:
             transformed_row = []
             transformed_header = []
@@ -48,6 +48,6 @@ class Dataset():
                     transformed_row.append(row[i])
                     transformed_header.append(feat)
 
-        if self.transformed_header is None:
-            self.transformed_header = transformed_header
-        self.transformed_rows += [transformed_row]
+            if self.transformed_header is None:
+                self.transformed_header = transformed_header
+            self.transformed_rows += [transformed_row]

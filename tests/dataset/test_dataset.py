@@ -80,3 +80,29 @@ class TestDataset:
         assert_equals(_dataset.transformed_header, _header)
         assert_items_equal(_dataset.transformed_rows, _expected_row)
         assert_equals(_dataset.transformer, _transformer)
+
+    def test_applyTransformations_TransformetNotSet(self):
+        _dataset = Dataset(self.header, self.rows)
+
+        _dataset.applyTransformations()
+
+        assert_items_equal(_dataset.header, self.header)
+        assert_items_equal(_dataset.rows, self.rows)
+        assert_items_equal(_dataset.transformed_rows, self.rows)
+        assert_equals(_dataset.transformer, None)
+        assert_equals(_dataset.transformed_header, self.header)
+
+    def test_applyRowTransformation_TransformetNotSet(self):
+        _dataset = Dataset(self.header, self.rows)
+
+        _row = ['1', '20', '2']
+        _expected_row = [_row]
+        _header = ['a1', 'a2', 'y']
+
+        _dataset.applyRowTransformation(_row)
+
+        assert_items_equal(_dataset.header, self.header)
+        assert_items_equal(_dataset.rows, self.rows)
+        assert_items_equal(_dataset.transformed_rows, _expected_row)
+        assert_equals(_dataset.transformer, None)
+        assert_equals(_dataset.transformed_header, self.header)
