@@ -27,12 +27,12 @@ class Dataset():
             transformed_row = []
             transformed_header = []
 
-            for feat in self.transformer.get_fields():
+            for feat in self.transformer.get_feats():
                 try:
                     i = self.header.index(feat)
-                    trans_feat = getattr(self.transformer.Fields, feat).transform(row[i])
+                    trans_feat = getattr(self.transformer.Feats, feat).transform(row[i])
                 except:
-                    trans_feat = getattr(self.transformer.Fields, feat).transform(self.header, row)
+                    trans_feat = getattr(self.transformer.Feats, feat).transform(self.header, row)
 
                 transformed_row += trans_feat
 
@@ -44,7 +44,7 @@ class Dataset():
                             transformed_header.append("%s_%s" % (feat, j))
 
             for i, feat in enumerate(self.header):
-                if feat not in self.transformer.get_fields():
+                if feat not in self.transformer.get_feats():
                     transformed_row.append(row[i])
                     transformed_header.append(feat)
 
