@@ -4,7 +4,11 @@ class Datasource(object):
         self.path = path
 
     def read(self):
-        """ """
+        """
+            Read a data source.
+
+            Always place traget class on last column.
+        """
         raise NotImplementedError("")
 
     def write(self, dataset):

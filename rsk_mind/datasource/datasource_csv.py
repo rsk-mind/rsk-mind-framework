@@ -3,12 +3,25 @@ from datasource import Datasource
 from ..dataset import Dataset
 
 class CSVDatasource(Datasource):
+    """
+        Parse and read a data source on CSV Format.
+    """
 
     def __init__(self, path, target=None):
+        """
+            Create a new CSV Datasource with targe class name.
+
+            Target class name is optional.
+        """
         super(CSVDatasource, self).__init__(path)
         self.target = target
 
     def read(self):
+        """
+            Read a data source on CSV format.
+
+            Always place target class on last column.
+        """
         with open(self.path, 'rb') as infile:
             reader = csv.reader(infile)
 
@@ -40,10 +53,23 @@ class CSVDatasource(Datasource):
         return Dataset(header, rows)
 
 
-    def write(self, dataset):
+    def write(self, dataset, write_transformed=True):
+        """
+            Write data on file with csv format.
+
+            If transfomation had applied on dataset write transformed data
+            otherwise the same dataset.
+        """
+        if dataset.transformed_header is None or not write_transformed:
+            header = dataset.header
+            rows = dataset.rows
+        else:
+            header = dataset.transformed_header
+            rows = dataset.transformed_rows
+
         with open(self.path, 'w') as outfile:
             writer = csv.writer(outfile)
-            writer.writerow(dataset.transformed_header)
+            writer.writerow(header)
 
-            for row in dataset.transformed_rows:
+            for row in rows:
                 writer.writerow(row)
