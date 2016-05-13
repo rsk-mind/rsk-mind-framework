@@ -2,7 +2,6 @@
 
 Tutorial
 =====
-
 .. include:: tutorial-page/00-start-project.rst
 
 .. include:: tutorial-page/01-transformer.rst
