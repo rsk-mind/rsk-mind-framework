@@ -10,7 +10,9 @@ class Dataset():
         self.transformed_header = None
 
     def setTransformer(self, transformer):
-        """ """
+        """
+        :param transformer:
+        """
         self.transformer = transformer
 
     def applyTransformations(self):
@@ -19,8 +21,10 @@ class Dataset():
             self.applyRowTransformation(row)
 
     def applyRowTransformation(self, row):
-        """ """
-        if self.transformer == None:
+        """
+        :param row:
+        """
+        if self.transformer is None:
             self.transformed_rows += [row]
             self.transformed_header = self.header
         else:
@@ -30,9 +34,9 @@ class Dataset():
             for feat in self.transformer.get_feats():
                 try:
                     i = self.header.index(feat)
-                    trans_feat = getattr(self.transformer.Feats, feat).transform(row[i])
+                    trans_feat = self.transformer.get_transformer_func(feat)(row[i])
                 except:
-                    trans_feat = getattr(self.transformer.Feats, feat).transform(self.header, row)
+                    trans_feat = self.transformer.get_transformer_func(feat)(self.header, row)
 
                 transformed_row += trans_feat
 
