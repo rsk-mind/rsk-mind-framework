@@ -1,13 +1,10 @@
-import os
-
-from nose.tools import assert_equals, assert_items_equal
-from rsk_mind.dataset import Dataset
+from nose.tools import assert_items_equal
 from rsk_mind.transformer import *
 
 
 class CustomTransformer(Transformer):
-
     class Feats:
+        exclude = ('a3', 'a4')
         a1 = Feat()
         a2 = Feat()
         f1 = CompositeFeat(['a1', 'a2'])
@@ -23,7 +20,6 @@ class CustomTransformer(Transformer):
 
 
 class TestDataset:
-
     def setUp(self):
         self.header = ['a1', 'a2', 'y']
         self.rows = [['0', '0', '0'], ['0', '2', '0'], ['1', '0.5', '1'], ['0.9', '2', '1']]
@@ -43,5 +39,11 @@ class TestDataset:
     def test_get_transformer_func(self):
         _expected_value = [-2]
         _actual_value = self.transformer.get_transformer_func('a1')(2)
+
+        assert_items_equal(_expected_value, _actual_value)
+
+    def test_get_exclude_feats(self):
+        _expected_value = ('a3', 'a4')
+        _actual_value = self.transformer.get_excluded_feats()
 
         assert_items_equal(_expected_value, _actual_value)
