@@ -1,8 +1,8 @@
-import os
-
 from nose.tools import assert_equals, assert_items_equal
+
 from rsk_mind.dataset import Dataset
 from rsk_mind.transformer import *
+
 
 class CustomTransformer(Transformer):
     class Feats():
