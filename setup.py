@@ -21,14 +21,16 @@ setup(
     install_requires=[
             'xgboost==0.4a30',
             'geoip2',
+            'Jinja2',
             'scikit-learn',
             'scipy',
             'Jinja2',
             'pandas',
             'numpy'
+            'cython'
     ],
     extras_require={
-            'docs': ['sphinx'],
+            'docs': ['sphinx', 'sphinx_rtd_theme'],
             'tests': ['nose']
     },
     zip_safe=False
