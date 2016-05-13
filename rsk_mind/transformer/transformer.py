@@ -1,6 +1,6 @@
 class Transformer(object):
     """
-        Base class for all transformer
+        Base class for all transformers
     """
 
     class Feats:
