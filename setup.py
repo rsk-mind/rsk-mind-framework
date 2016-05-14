@@ -17,7 +17,7 @@ setup(
         'rskmind-admin = rskmind.core.management:execute_from_command_line',
     ]},
     include_package_data=True,
-    packages=find_packages(exclude=('tests', 'tests.*')),
+    packages=find_packages(exclude=('tests', 'tests.*', 'doc', 'tests.*')),
     install_requires=[
             'xgboost==0.4a30',
             'geoip2',
