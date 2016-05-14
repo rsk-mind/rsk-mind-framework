@@ -2,3 +2,4 @@ from datasource import Datasource
 from datasource_csv import CSVDatasource
 from datasource_svmlight import SVMLightDatasource
 from datasource_arff import ArffDatasource
+from datasource_json import JSONDatasource
