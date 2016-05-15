@@ -99,6 +99,7 @@ class Statistics(object):
         relative_frequencies[key] = counts[key] / float(self._statistics['instances'])
 
       self._statistics[attribute_name] = {
+          'type': _type,
           'counts': counts,
           'relative_frequencies': relative_frequencies
       }
@@ -115,8 +116,15 @@ class Statistics(object):
 
     # append attribute's name
     column.append(self.header[index])
+    # check if this index is the last
+    # then this is the class attribute (by convention)
+    _class = True if (index == len(self.header) - 1) else False
     # append attribute's values
     for row in self.rows:
-      column.append(row[index])
+      if _class:
+        # copy class attributes values as strings only for statistics
+        column.append(str(row[index]))
+      else:
+        column.append(row[index])
 
     return column
