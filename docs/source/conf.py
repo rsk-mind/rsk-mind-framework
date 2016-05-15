@@ -49,7 +49,7 @@ source_parsers = {
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 # source_suffix = ['.rst', '.md']
-source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -133,7 +133,7 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
-html_title = u'rsk_mind v0.1.0 documentation'
+#html_title = u'rsk_mind v0.1.0 documentation'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
