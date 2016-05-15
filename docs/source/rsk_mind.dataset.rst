@@ -8,3 +8,9 @@ Module contents
     :members:
     :undoc-members:
     :show-inheritance:
+
+
+.. automodule:: rsk_mind.dataset.statistics
+    :members:
+    :undoc-members:
+    :show-inheritance:

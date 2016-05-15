@@ -6,6 +6,9 @@ Introduction
 Background
 ----------
 
+Features
+----------
+
 .. _`mit`:
 
 MIT License
