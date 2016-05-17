@@ -20,6 +20,8 @@ branches:
     - master
     - /^test-.*$/
 
-install: "python setup.py install"
+install:
+  - "pip install -r requirements.txt"
+  - "python setup.py install"
 
 script: nosetests
