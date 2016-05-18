@@ -28,5 +28,3 @@ install:
   - "python setup.py install"
 
 script: nosetests
-
-cat /home/acinonyx/erpnext/README.md
