@@ -14,6 +14,7 @@ addons:
     - liblapack-dev
     - libatlas-base-dev
     - gfortran
+
 os:
   - linux
 
