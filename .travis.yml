@@ -27,6 +27,7 @@ branches:
     - /^test-.*$/
 
 install:
+  - "pip install scipy"
   - "python setup.py install"
 
 script: nosetests
