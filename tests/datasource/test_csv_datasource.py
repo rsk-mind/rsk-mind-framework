@@ -1,5 +1,5 @@
 from nose.tools import assert_equals, assert_items_equal
-from rsk_mind.datasource import CSVDatasource
+from rsk_mind.datasource import CSVDataSource
 from rsk_mind.dataset import Dataset
 import os
 
@@ -18,7 +18,7 @@ class TestCsvDatasource:
         del self.out_path
 
     def test_read(self):
-        csv_dsrc = CSVDatasource(self.in_path)
+        csv_dsrc = CSVDataSource(self.in_path)
         csv_dataset = csv_dsrc.read()
 
         _expected_header = ['a1', 'a2', 'a3', 'a4', 'target']
@@ -39,7 +39,7 @@ class TestCsvDatasource:
         _rows = [['0','1','0','0'], ['1','1','0','1']]
         csv_dataset = Dataset(_header, _rows)
 
-        csv_dsrc = CSVDatasource(self.out_path)
+        csv_dsrc = CSVDataSource(self.out_path)
 
         # write dataset to file
         csv_dsrc.write(csv_dataset)

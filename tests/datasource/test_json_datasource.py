@@ -1,5 +1,5 @@
 from nose.tools import assert_equals, assert_items_equal
-from rsk_mind.datasource import JSONDatasource
+from rsk_mind.datasource import JSONDataSource
 from rsk_mind.dataset import Dataset
 import os
 
@@ -17,7 +17,7 @@ class TestJsonDatasource:
         del self.out_path
 
     def test_read(self):
-        _datasource = JSONDatasource(self.in_path, 'target')
+        _datasource = JSONDataSource(self.in_path, 'target')
         _dataset =  _datasource.read()
 
         _expected_header = ['a1', 'a2', 'a3', 'a4', 'target']
@@ -38,7 +38,7 @@ class TestJsonDatasource:
         _rows = [['0','1','0','0'], ['1','1','0','1']]
         _dataset = Dataset(_header, _rows)
 
-        _datasource = JSONDatasource(self.out_path)
+        _datasource = JSONDataSource(self.out_path)
 
         _datasource.write(_dataset)
 

@@ -1,9 +1,10 @@
 import json
 
-from datasource import Datasource
+from datasource import DataSource
 from ..dataset import Dataset
 
-class JSONDatasource(Datasource):
+
+class JSONDataSource(DataSource):
     """
         Parse and read a data source on JSON Format.
     """
@@ -14,7 +15,7 @@ class JSONDatasource(Datasource):
 
             Target class name is optional.
         """
-        super(JSONDatasource, self).__init__(path)
+        super(JSONDataSource, self).__init__(path)
         self.target = target
 
     def read(self):

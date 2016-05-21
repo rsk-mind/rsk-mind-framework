@@ -1,5 +1,5 @@
 from nose.tools import assert_equals
-from rsk_mind.datasource import ArffDatasource
+from rsk_mind.datasource import ARFFDataSource
 from rsk_mind.dataset import Dataset
 import os
 
@@ -19,7 +19,7 @@ class TestArffDatasource:
         del self.out_path
 
     def test_read(self):
-        arff_dsrc = ArffDatasource(self.in_path)
+        arff_dsrc = ARFFDataSource(self.in_path)
         arff_dataset = arff_dsrc.read()
 
         _header = arff_dataset.header
@@ -39,7 +39,7 @@ class TestArffDatasource:
         arff_dataset.transformed_header = _header
         arff_dataset.transformed_rows = _rows
 
-        arff_dsrc = ArffDatasource(self.out_path)
+        arff_dsrc = ARFFDataSource(self.out_path)
 
         # write dataset to file
         arff_dsrc.write(arff_dataset)

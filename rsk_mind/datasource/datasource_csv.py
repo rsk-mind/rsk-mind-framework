@@ -1,8 +1,9 @@
 import csv
-from datasource import Datasource
+from datasource import DataSource
 from ..dataset import Dataset
 
-class CSVDatasource(Datasource):
+
+class CSVDataSource(DataSource):
     """
         Parse and read a data source on CSV Format.
     """
@@ -13,7 +14,7 @@ class CSVDatasource(Datasource):
 
             Target class name is optional.
         """
-        super(CSVDatasource, self).__init__(path)
+        super(CSVDataSource, self).__init__(path)
         self.target = target
 
     def read(self):
@@ -51,7 +52,6 @@ class CSVDatasource(Datasource):
                     raise Exception('Target class not found')
 
         return Dataset(header, rows)
-
 
     def write(self, dataset, write_transformed=True):
         """
