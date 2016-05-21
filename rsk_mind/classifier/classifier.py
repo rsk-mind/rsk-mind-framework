@@ -11,24 +11,51 @@ class Classifier(object):
   def __init__(self):
     """Initialize."""
     self.model = None
-    self.train_dataset = None
-    self.test_dataset = None
+    self._training_dataset = None
+    self._test_dataset = None
+    self._validation_dataset = None
 
-  def set_train_dataset(self, train_set):
+  @property
+  def training_dataset(self):
+    """Get training dataset."""
+    return self._training_dataset
+
+  @training_dataset.setter
+  def training_dataset(self, train_set):
     """Set training dataset.
 
     :param train_set: the dataset to use for training
     :type train_set: Dataset
     """
-    self.train_dataset = train_set
+    self._training_dataset = train_set
 
-  def set_test_dataset(self, test_set):
+  @property
+  def test_dataset(self):
+    """Get test dataset."""
+    return self._test_dataset
+
+  @test_dataset.setter
+  def test_dataset(self, test_set):
     """Set test dataset.
 
-    :param test_set: the dataset to use for evaluation
+    :param test_set: the dataset to use for testing/evaluation
     :type test_set: Dataset
     """
-    self.test_dataset = test_set
+    self._test_dataset = test_set
+
+  @property
+  def validation_dataset(self):
+    """Get validation dataset."""
+    return self._validation_dataset
+
+  @validation_dataset.setter
+  def validation_dataset(self, validation_set):
+    """Set validation dataset.
+
+    :param validation_set: the dataset to use for validation
+    :type validation_set: Dataset
+    """
+    self._validation_dataset = validation_set
 
   def train(self, parameters={}):
     """Train the classifier.
