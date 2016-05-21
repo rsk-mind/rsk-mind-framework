@@ -89,7 +89,6 @@ class Splitter(object):
     of the given data might be enough for training.
     """
     # maybe 0.3 can be in a configuration file
-    # import ipdb; ipdb.set_trace()
     if round(self.test_p + self.validation_p) > 0.3:
       raise Exception(
           "The sum of test and validation percentages cannot exceed 0.3")
