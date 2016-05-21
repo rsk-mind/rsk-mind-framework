@@ -1,5 +1,5 @@
 from nose.tools import assert_equals
-from rsk_mind.datasource import SVMLightDatasource
+from rsk_mind.datasource import SVMLightDataSource
 from rsk_mind.dataset import Dataset
 import os
 
@@ -18,7 +18,7 @@ class TestSVMLightDatasource:
         del self.out_path
 
     def test_read(self):
-        svm_dsrc = SVMLightDatasource(self.in_path)
+        svm_dsrc = SVMLightDataSource(self.in_path)
         svm_dataset = svm_dsrc.read()
 
         _header = svm_dataset.header
@@ -38,7 +38,7 @@ class TestSVMLightDatasource:
         svm_dataset.transformed_header = _header
         svm_dataset.transformed_rows = _rows
 
-        svm_dsrc = SVMLightDatasource(self.out_path)
+        svm_dsrc = SVMLightDataSource(self.out_path)
 
         # write dataset to file
         svm_dsrc.write(svm_dataset)

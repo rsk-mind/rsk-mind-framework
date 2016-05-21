@@ -1,12 +1,12 @@
-from datasource import Datasource
+from datasource import DataSource
 from ..dataset import Dataset
 import os
 
 
-class SVMLightDatasource(Datasource):
+class SVMLightDataSource(DataSource):
 
     def __init__(self, path):
-        super(SVMLightDatasource, self).__init__(path)
+        super(SVMLightDataSource, self).__init__(path)
 
     def read(self):
         # NOTE: svmlight format does not include
