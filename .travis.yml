@@ -28,9 +28,11 @@ branches:
 
 install:
   - "pip install scipy"
+  - "pip install coverage"
   - "python setup.py install"
 
-script: nosetests
+script:
+  - "nosetests --with-coverage --cover-erase --cover-package=rsk_mind --cover-html"
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
