@@ -42,14 +42,10 @@ class CSVDataSource(DataSource):
                 rows.append(row)
 
             if self.target is not None:
-                try:
-                    index = header.index(self.target)
-
-                    tmp = header[index]
-                    del header[index]
-                    header += [tmp]
-                except:
-                    raise Exception('Target class not found')
+                index = header.index(self.target)
+                tmp = header[index]
+                del header[index]
+                header += [tmp]
 
         return Dataset(header, rows)
 
