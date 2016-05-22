@@ -1,3 +1,4 @@
+pandas
 Sphinx
 numpy
 scipy
