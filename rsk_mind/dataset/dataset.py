@@ -1,4 +1,4 @@
-class Dataset():
+class Dataset:
     """ """
 
     def __init__(self, header, rows):
