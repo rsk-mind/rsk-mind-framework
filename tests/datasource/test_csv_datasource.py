@@ -3,16 +3,16 @@ from rsk_mind.datasource import CSVDataSource
 from rsk_mind.dataset import Dataset
 import os
 
+
 class TestCsvDatasource:
-
     def setUp(self):
-        self.in_path = os.path.join(os.getcwd(),'tests/files/in.csv')
-        self.out_path = os.path.join(os.getcwd(),'tests/files/out.csv')
-
-    def tearDown(self):
+        self.in_path = os.path.join(os.getcwd(), 'tests/files/in.csv')
+        self.out_path = os.path.join(os.getcwd(), 'tests/files/out.csv')
         # delete the out file if it exists
         if os.path.exists(self.out_path):
             os.remove(self.out_path)
+
+    def tearDown(self):
         # delete variables to release memory
         del self.in_path
         del self.out_path
@@ -22,7 +22,7 @@ class TestCsvDatasource:
         csv_dataset = csv_dsrc.read()
 
         _expected_header = ['a1', 'a2', 'a3', 'a4', 'target']
-        _expected_rows = [['0','0','0','0','1'], ['1','1','0','1','0'], ['1','0','0','1','0']]
+        _expected_rows = [['0', '0', '0', '0', '1'], ['1', '1', '0', '1', '0'], ['1', '0', '0', '1', '0']]
 
         _header = csv_dataset.header
         _rows = csv_dataset.rows
@@ -35,14 +35,14 @@ class TestCsvDatasource:
 
     def test_write(self):
         # create a dataset
-        _header = ['feat0','feat1','feat2','target']
-        _rows = [['0','1','0','0'], ['1','1','0','1']]
+        _header = ['feat0', 'feat1', 'feat2', 'target']
+        _rows = [['0', '1', '0', '0'], ['1', '1', '0', '1']]
         csv_dataset = Dataset(_header, _rows)
 
-        csv_dsrc = CSVDataSource(self.out_path)
+        csv_datasource = CSVDataSource(self.out_path)
 
         # write dataset to file
-        csv_dsrc.write(csv_dataset)
+        csv_datasource.write(csv_dataset)
 
         # check if file is created
         response = os.path.exists(self.out_path) and os.path.isfile(self.out_path)
