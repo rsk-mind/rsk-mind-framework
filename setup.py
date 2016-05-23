@@ -24,6 +24,7 @@ setup(
             'scikit-learn',
             'scipy',
             'Jinja2',
+            'pandas',
             'numpy'
     ],
     extras_require={
