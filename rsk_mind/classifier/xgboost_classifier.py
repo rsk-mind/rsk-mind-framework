@@ -50,8 +50,12 @@ class XgboostClassifier(Classifier):
 
         self.model = xgb.train(parameters, train_dmatrix, number_of_rounds, eval_list)
 
-
     def save_model(self, path):
+        """Save booster model.
+
+        :param path: the path to save model to disk
+        :type path: str
+        """
         if self.model:
             self.model.save_model(path)
         else:
@@ -59,6 +63,11 @@ class XgboostClassifier(Classifier):
             raise Exception()
 
     def load_model(self, path):
+        """Load model.
+
+        :param path: the path to load model from disk
+        :type path: str
+        """
         self.model = xgb.Booster({'nthread':4})
         # wrap bellow statement in a try-except statement
         # with custom exception
@@ -68,5 +77,21 @@ class XgboostClassifier(Classifier):
         pass
 
     def predict(instance):
-        pass
+        """Classify an instance.
+
+        The method does not really classify but
+        it outputs a probability for the positive class.
+
+        :param instance: the instance to be classified
+        :type instance: list
+        """
+        if not self.model:
+            # raise custom error later
+            raise Exception()
+        else:
+            to_be_classified = np.array(instance)
+            _dmatrix = xgb.DMatrix(to_be_classified)
+            ypredicted = self.model.predict(_dmatrix)
+
+            return ypredicted
 
