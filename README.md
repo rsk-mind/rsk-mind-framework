@@ -7,7 +7,7 @@ General propose framework for agile building of a data mining services. With thi
 framework a developer with low effort can deploy a machine learning services.
 
 
-System has three independent modules,
+Framework has three independent modules,
 
 1. **Transformation** Processing and augmenting our dataset.
 2. **Training** Training of a new model for prediction or classification.
