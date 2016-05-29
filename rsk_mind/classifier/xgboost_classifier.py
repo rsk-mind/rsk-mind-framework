@@ -2,6 +2,7 @@ import numpy as np
 import xgboost as xgb
 from classifier import Classifier
 from utils import separate_data_from_class
+from errors import UndefinedDatasetError
 
 
 class XgboostClassifier(Classifier):
@@ -29,8 +30,7 @@ class XgboostClassifier(Classifier):
         number_of_rounds = 200
 
         if not self._training_dataset:
-            # raise a specific error later
-            raise Exception()
+            raise UndefinedDatasetError("There is no training dataset")
         else:
             data_sequence, targets_sequence = separate_data_from_class(
                     self._training_dataset)
@@ -57,10 +57,13 @@ class XgboostClassifier(Classifier):
         :type path: str
         """
         if self.model:
-            self.model.save_model(path)
+            try:
+                self.model.save_model(path)
+            except Exception as e:
+                raise ClassifierSaveModelError("Error while saving trained model "\
+                        "due to the following: {}".format(e.message))
         else:
-            # raise custom error later
-            raise Exception()
+            raise UndefinedClassifierModelError("Unable to save null model")
 
     def load_model(self, path):
         """Load model.
@@ -68,13 +71,41 @@ class XgboostClassifier(Classifier):
         :param path: the path to load model from disk
         :type path: str
         """
-        self.model = xgb.Booster({'nthread':4})
-        # wrap bellow statement in a try-except statement
-        # with custom exception
-        self.model.load_model(path)
+        try:
+            self.model = xgb.Booster({'nthread':4})
+            self.model.load_model(path)
+        except Exception as e:
+            raise ClassifierLoadModelError("Error while loading model due to "\
+                    "the following: {}".format(e.message))
 
     def evaluate(self, threshold=0.5):
-        pass
+        if not self.model:
+            raise UndefinedClassifierModelError("Unable to evaluate since model is null")
+
+        if not self._test_dataset:
+            UndefinedDatasetError("No test dataset is given")
+
+        test_data_sequence, test_targets_sequence = separate_data_from_class(
+            self._test_dataset)
+
+        test_data = test_data_sequence[1]
+        true_targets = test_targets_sequence[1]
+
+        predicted_probabilities = []
+        predicted_targets= []
+
+        for test_row in test_data:
+            probability = self.predict(test_row)
+            predicted_probabilities.append(probability)
+            if probability < threshold:
+                predicted_target = 0
+            else:
+                predicted_target = 1
+            predicted_targets.append(predicted_target)
+
+        # TODO use Evaluation to calculate metrics
+        # and return the summary dictionary
+
 
     def predict(instance):
         """Classify an instance.
@@ -86,8 +117,7 @@ class XgboostClassifier(Classifier):
         :type instance: list
         """
         if not self.model:
-            # raise custom error later
-            raise Exception()
+            raise UndefinedClassifierModelError("Model is null")
         else:
             to_be_classified = np.array(instance)
             _dmatrix = xgb.DMatrix(to_be_classified)
