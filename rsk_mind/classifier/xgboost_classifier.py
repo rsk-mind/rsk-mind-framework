@@ -1,6 +1,7 @@
 import numpy as np
 import xgboost as xgb
 from classifier import Classifier
+from rsk_mind.evaluation import Evaluation
 from rsk_mind.utils import separate_data_from_class
 from rsk_mind.errors import (
     UndefinedDatasetError,
@@ -108,9 +109,14 @@ class XgboostClassifier(Classifier):
                 predicted_target = 1
             predicted_targets.append(predicted_target)
 
-        # TODO use Evaluation to calculate metrics
-        # and return the summary dictionary
+        ev = Evaluation()
+        ev.accuracy(true_targets, predicted_targets)
+        ev.precision(true_targets, predicted_targets)
+        ev.recall(true_targets, predicted_targets)
+        ev.F1(true_targets, predicted_targets)
+        ev.roc_auc(true_targets, predicted_probabilities)
 
+        return ev.summary
 
     def predict(instance):
         """Classify an instance.
