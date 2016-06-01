@@ -26,7 +26,7 @@ class Evaluation(object):
         """Clear the summary dictionary."""
         self._summary.clear()
 
-    def accuracy(y_true, y_predicted):
+    def accuracy(self, y_true, y_predicted):
         """Compute accuracy score.
 
         :param y_true: a list of true labels
@@ -37,7 +37,7 @@ class Evaluation(object):
         accuracy = accuracy_score(y_true, y_predicted)
         self._summary['accuracy'] = accuracy
 
-    def precision(y_true, y_predicted):
+    def precision(self, y_true, y_predicted):
         """Compute precision score.
 
         :param y_true: a list of true labels
@@ -48,7 +48,7 @@ class Evaluation(object):
         precision = precision_score(y_true, y_predicted)
         self._summary['precision'] = precision
 
-    def recall(y_true, y_predicted):
+    def recall(self, y_true, y_predicted):
         """Compute recall score.
 
         :param y_true: a list of true labels
@@ -59,7 +59,7 @@ class Evaluation(object):
         recall = recall_score(y_true, y_predicted)
         self._summary['recall'] = recall
 
-    def F1(y_true, y_predicted):
+    def F1(self, y_true, y_predicted):
         """Compute f1 score.
 
         :param y_true: a list of true labels
@@ -70,7 +70,7 @@ class Evaluation(object):
         f1 = f1_score(y_true, y_predicted)
         self._summary['f1'] = f1
 
-    def roc_auc(y_true, y_score):
+    def roc_auc(self, y_true, y_score):
         """Compute roc-auc score.
 
         :param y_true: a list of true labels
