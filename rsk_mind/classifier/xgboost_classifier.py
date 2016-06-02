@@ -118,7 +118,7 @@ class XgboostClassifier(Classifier):
 
         return ev.summary
 
-    def predict(instance):
+    def predict(self, instance):
         """Classify an instance.
 
         The method does not really classify but
@@ -130,9 +130,12 @@ class XgboostClassifier(Classifier):
         if not self.model:
             raise UndefinedClassifierModelError("Model is null")
         else:
-            to_be_classified = np.array(instance)
+            instances = []
+            instances.append(instance)
+            to_be_classified = np.array(instances)
             _dmatrix = xgb.DMatrix(to_be_classified)
             ypredicted = self.model.predict(_dmatrix)
+            score = float(ypredicted[0])
 
-            return ypredicted
+            return score
 
