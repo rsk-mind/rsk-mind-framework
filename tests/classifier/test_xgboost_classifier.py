@@ -95,10 +95,9 @@ class TestXgboostClassifier(object):
         score = self.test_classifier.predict(instance)
         assert_true(score >= 0 and score <= 1)
 
-
-    # def test_load_model(self):
-    #     pass
-
-
-
+    def test_11_load_model(self):
+        self.test_classifier.model = None
+        assert_equals(self.test_classifier.model, None)
+        self.test_classifier.load_model(self.model_path)
+        assert_not_equals(self.test_classifier.model, None)
 
