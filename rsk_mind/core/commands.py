@@ -1,4 +1,16 @@
-import argparse, os
+import argparse
+
+from rsk_mind.dataset import Statistics
+
+
+def get_analytics(setting):
+    DATASOURCE = setting.DATASOURCE
+    datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
+    dataset = datasource.read()
+
+    analytics = Statistics(dataset)
+
+    print analytics.statistics
 
 
 def update_engine(setting):
@@ -29,3 +41,5 @@ def execute_from_command_line(argv, setting):
         transformation(setting)
     elif params.command == 'update-engine':
         update_engine(setting)
+    elif params.command == 'analytics':
+        get_analytics(setting)

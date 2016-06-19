@@ -7,7 +7,12 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     autoescape=True)
 
 
-def startapp(project_name):
+def start_app(project_name):
+    """
+        Initialize new project with default options
+
+        :param project_name: name of the new project
+    """
     top_dir = os.path.join(os.getcwd(), project_name)
     if not os.path.exists(top_dir):
         os.makedirs(top_dir)
@@ -22,15 +27,16 @@ def startapp(project_name):
         with open(os.path.join(top_dir, tmpl.replace('.jinja2', '')), 'w') as outfile:
             outfile.write(content)
 
+
 def execute_from_command_line(argv):
     argv = argv[1:]
 
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('command', help='Command to execute!')
-    parser.add_argument('project_name', help='')
+    parser.add_argument('project_name', help='Name of a new RSK Mind Project')
     params = parser.parse_args(argv)
 
     if params.command == 'startapp':
-        startapp(params.project_name)
+        start_app(params.project_name)
     else:
         pass
