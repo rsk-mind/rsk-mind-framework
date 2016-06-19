@@ -8,7 +8,7 @@ setup(
     version=__version__,
     description='Framework for machine learning platform',
     keywords='machine learning deep learning',
-    url='git@bitbucket.org:rasarmy/framework.git',
+    url='git@github.com:rsk-mind/rsk-mind-framework.git',
     author='RSK Project',
     author_email='admin@rsk-project.com',
     license='MIT',
