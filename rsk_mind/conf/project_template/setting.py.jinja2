@@ -2,6 +2,8 @@ from rsk_mind.datasource import *
 
 from transformer import CustomTransformer
 
+PROJECT_NAME = '{{ data.project_name }}'
+
 DATASOURCE= {
   'IN' : {
     'class' : CSVDataSource,
@@ -19,3 +21,11 @@ ANALYSIS = {
 }
 
 TRANSFORMER = CustomTransformer
+
+TRAINING = {
+
+}
+
+ENGINE = {
+
+}

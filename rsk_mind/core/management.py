@@ -19,10 +19,14 @@ def start_app(project_name):
     else:
         pass
 
+    data = {
+        'project_name': project_name
+    }
+
     tmpls = ['manager.py.jinja2', 'transformer.py.jinja2', 'setting.py.jinja2']
     for tmpl in tmpls:
         content = JINJA_ENVIRONMENT \
-            .get_template('project_template/%s' % tmpl).render()
+            .get_template('project_template/%s' % tmpl).render(data=data)
 
         with open(os.path.join(top_dir, tmpl.replace('.jinja2', '')), 'w') as outfile:
             outfile.write(content)

@@ -29,8 +29,14 @@ def get_analytics(setting):
         logger.debug('Print on console analysis output')
 
 
-def update_engine(setting):
-    pass
+def build_engine(setting):
+    logger.info('Starting building of new engine')
+
+    logger.info('Finish building of new engine')
+
+
+def run_engine(setting):
+    logger.info('Starting the %s engine' % setting.PROJECT_NAME)
 
 
 def transformation(setting):
@@ -55,7 +61,11 @@ def execute_from_command_line(argv, setting):
 
     if params.command == 'transformation':
         transformation(setting)
-    elif params.command == 'update-engine':
-        update_engine(setting)
+    elif params.command == 'buildengine':
+        build_engine(setting)
+    elif params.command == 'runsengine':
+        run_engine(setting)
     elif params.command == 'analytics':
         get_analytics(setting)
+    else:
+        logger.error('%s: Not a valid command' % params.command)
