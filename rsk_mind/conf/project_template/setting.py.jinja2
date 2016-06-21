@@ -2,15 +2,30 @@ from rsk_mind.datasource import *
 
 from transformer import CustomTransformer
 
+PROJECT_NAME = '{{ data.project_name }}'
+
 DATASOURCE= {
   'IN' : {
-    'class' : CSVDatasource,
+    'class' : CSVDataSource,
     'params' : ('in.csv', )
   },
   'OUT' : {
-    'class' : CSVDatasource,
+    'class' : CSVDataSource,
     'params' : ('out.csv', )
   }
 }
 
+ANALYSIS = {
+    'persist': True,
+    'out': 'info.json'
+}
+
 TRANSFORMER = CustomTransformer
+
+TRAINING = {
+
+}
+
+ENGINE = {
+
+}
