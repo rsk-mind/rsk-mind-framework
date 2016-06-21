@@ -1,5 +1,4 @@
-import argparse
-import logging
+import argparse, logging, json
 
 from rsk_mind.dataset import Statistics
 
@@ -9,19 +8,22 @@ logger.setLevel(logging.DEBUG)
 
 
 def get_analytics(setting):
-    logger.info('Reading datasset')
+
+    logger.info('Reading dataset')
     DATASOURCE = setting.DATASOURCE
     datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
     dataset = datasource.read()
-    logger.info('Finish reading datasset')
+    logger.info('Finish reading dataset')
 
-    logger.info('Analysis on datasset')
+    logger.info('Analysis on dataset')
     analytics = Statistics(dataset)
     logger.debug(analytics.statistics)
-    logger.info('Finish analysis on datasset')
+    logger.info('Finish analysis on dataset')
 
     if setting.ANALYSIS['persist']:
         logger.debug('Saving analysis on disk')
+        with open(setting.ANALYSIS['out'], 'w') as out:
+            json.dump(analytics.statistics, out, indent=4, sort_keys=True)
         logger.debug('Complete saving analysis on disk')
     else:
         logger.debug('Print on console analysis output')
