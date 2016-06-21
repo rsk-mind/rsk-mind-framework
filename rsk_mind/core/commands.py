@@ -1,16 +1,30 @@
 import argparse
+import logging
 
 from rsk_mind.dataset import Statistics
 
+logging.basicConfig()
+logger = logging.getLogger('rsk-mind')
+logger.setLevel(logging.DEBUG)
+
 
 def get_analytics(setting):
+    logger.info('Reading datasset')
     DATASOURCE = setting.DATASOURCE
     datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
     dataset = datasource.read()
+    logger.info('Finish reading datasset')
 
+    logger.info('Analysis on datasset')
     analytics = Statistics(dataset)
+    logger.debug(analytics.statistics)
+    logger.info('Finish analysis on datasset')
 
-    print analytics.statistics
+    if setting.ANALYSIS['persist']:
+        logger.debug('Saving analysis on disk')
+        logger.debug('Complete saving analysis on disk')
+    else:
+        logger.debug('Print on console analysis output')
 
 
 def update_engine(setting):
