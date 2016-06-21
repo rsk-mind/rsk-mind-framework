@@ -10,5 +10,14 @@ framework a developer with low effort can deploy a machine learning services.
 Framework has three independent modules,
 
 1. **Transformation** Processing and augmenting our dataset.
-2. **Training** Training of a new model for prediction or classification.
-3. **Prediction - Classification** Get the result for the instance via a REST API.
+2. **Analytics** Get information about the dataset.
+3. **Training** Training of a new model for prediction or classification.
+4. **Prediction - Classification** Get the result for the instance via a REST API.
+
+## Transformation
+
+## Analytics
+
+## Training
+
+## Predicting
