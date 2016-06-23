@@ -23,7 +23,20 @@ ANALYSIS = {
 TRANSFORMER = CustomTransformer
 
 TRAINING = {
-
+    'algorithm' : {
+        'xgboost' : {
+            'parameters' : {
+                'bst:max_depth': 7,
+                'bst:eta': 0.3,
+                'bst:subsample': 0.5,
+                'silent': 0,
+                'objective': 'binary:logistic',
+                'nthread': 4,
+                'eval_metric': 'auc'
+            },
+            'dataset' : DATASOURCE['IN']
+        }
+    }
 }
 
 ENGINE = {
