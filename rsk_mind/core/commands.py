@@ -1,6 +1,7 @@
 import argparse, logging, json
 
-from rsk_mind.dataset import Statistics
+from rsk_mind.dataset import Statistics, Splitter
+from rsk_mind.classifier.xgboost_classifier import XgboostClassifier
 
 logging.basicConfig()
 logger = logging.getLogger('rsk-mind')
@@ -33,7 +34,23 @@ def build_engine(setting):
     logger.info('Starting building of new engine')
     setting = setting.TRAINING
 
-    if setting[]
+    if setting['algorithm']['name'] == 'xgboost':
+        params = setting['algorithm']['parameters']
+        clf = XgboostClassifier()
+
+        DATASOURCE = setting['algorithm']['dataset']
+        datasource = DATASOURCE['class'](*DATASOURCE['params'])
+        _original_dataset = datasource.read()
+        _splitter = Splitter(_original_dataset)
+
+        clf.training_dataset = _splitter.training_dataset
+        clf.validation_dataset = _splitter.validation_dataset
+        clf.test_dataset = _splitter.test_dataset
+
+        clf.train()
+    else:
+        logger.error('Uknown algorithm %s' % setting['algorithm'])
+
 
     logger.info('Finish building of new engine')
 
