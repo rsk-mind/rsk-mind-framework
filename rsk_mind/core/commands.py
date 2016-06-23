@@ -31,6 +31,9 @@ def get_analytics(setting):
 
 def build_engine(setting):
     logger.info('Starting building of new engine')
+    setting = setting.TRAINING
+
+    if setting[]
 
     logger.info('Finish building of new engine')
 
