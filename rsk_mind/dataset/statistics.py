@@ -73,11 +73,15 @@ class Statistics(object):
         :type index: int
         """
         column_vector = self._get_column_vector(index)
-        sample_value = column_vector[1]
+        try:
+            sample_value = float(column_vector[1])
+        except ValueError:
+            sample_value = column_vector[1]
         attribute_name = column_vector[0]
         _type = "NUMERIC" if isinstance(sample_value, Number) else "NOMINAL"
         if _type == "NUMERIC":
-            attribute_values = np.asarray(column_vector[1:])
+            num_array = map(lambda x: float(x), column_vector[1:])
+            attribute_values = np.asarray(num_array)
             _min = float(attribute_values.min())
             _max = float(attribute_values.max())
             _mean = float(attribute_values.mean())
