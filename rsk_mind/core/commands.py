@@ -1,11 +1,20 @@
 import argparse, logging, json
 
-from rsk_mind.dataset import Statistics
+from rsk_mind.dataset import Statistics, Splitter
+from rsk_mind.classifier.xgboost_classifier import XgboostClassifier
 
 logging.basicConfig()
 logger = logging.getLogger('rsk-mind')
-logger.setLevel(logging.DEBUG)
 
+def default_settings(setting):
+    ANALYSIS = {
+        'persist': False
+    }
+
+    if not hasattr(setting, 'ANALYSIS'):
+        setattr(setting, 'ANALYSIS', ANALYSIS)
+
+    return setting
 
 def get_analytics(setting):
 
@@ -21,16 +30,37 @@ def get_analytics(setting):
     logger.info('Finish analysis on dataset')
 
     if setting.ANALYSIS['persist']:
-        logger.debug('Saving analysis on disk')
+        logger.debug('Saving analysis')
         with open(setting.ANALYSIS['out'], 'w') as out:
             json.dump(analytics.statistics, out, indent=4, sort_keys=True)
-        logger.debug('Complete saving analysis on disk')
+        logger.debug('Complete saving analysis')
     else:
-        logger.debug('Print on console analysis output')
+        logger.debug('Skip saving analysis')
 
 
 def build_engine(setting):
     logger.info('Starting building of new engine')
+    setting = setting.TRAINING
+
+    if setting['algorithm']['name'] == 'xgboost':
+        params = setting['algorithm']['parameters']
+        clf = XgboostClassifier()
+
+        DATASOURCE = setting['algorithm']['dataset']
+        datasource = DATASOURCE['class'](*DATASOURCE['params'])
+        _original_dataset = datasource.read()
+        _original_dataset.applyTransformations()
+        _splitter = Splitter(_original_dataset)
+
+
+        clf.training_dataset = _splitter.training_dataset
+        clf.validation_dataset = _splitter.validation_dataset
+        clf.test_dataset = _splitter.test_dataset
+
+        clf.train()
+    else:
+        logger.error('Uknown algorithm %s' % setting['algorithm'])
+
 
     logger.info('Finish building of new engine')
 
@@ -57,7 +87,15 @@ def execute_from_command_line(argv, setting):
 
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('command', help='Command to execute!')
+    parser.add_argument('--verbose', '-v', dest='verbose', action='store_true')
     params = parser.parse_args(argv)
+
+    setting = default_settings(setting)
+
+    if params.verbose:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.INFO)
 
     if params.command == 'transformation':
         transformation(setting)
