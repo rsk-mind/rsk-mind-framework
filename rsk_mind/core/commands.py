@@ -5,7 +5,6 @@ from rsk_mind.classifier.xgboost_classifier import XgboostClassifier
 
 logging.basicConfig()
 logger = logging.getLogger('rsk-mind')
-logger.setLevel(logging.DEBUG)
 
 def default_settings(setting):
     ANALYSIS = {
@@ -88,9 +87,15 @@ def execute_from_command_line(argv, setting):
 
     parser = argparse.ArgumentParser(description='')
     parser.add_argument('command', help='Command to execute!')
+    parser.add_argument('--verbose', '-v', dest='verbose', action='store_true')
     params = parser.parse_args(argv)
 
     setting = default_settings(setting)
+
+    if params.verbose:
+        logger.setLevel(logging.DEBUG)
+    else:
+        logger.setLevel(logging.INFO)
 
     if params.command == 'transformation':
         transformation(setting)
