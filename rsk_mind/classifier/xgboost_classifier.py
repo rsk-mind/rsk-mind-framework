@@ -11,16 +11,15 @@ from rsk_mind.errors import (
 )
 
 
-class XgboostClassifier(Classifier):
-
+class XGBoostClassifier(Classifier):
     def __init__(self):
-        """Initialize an xgboost classifier."""
-        super(XgboostClassifier, self).__init__()
+        """Initialize an XGBoost classifier."""
+        super(XGBoostClassifier, self).__init__()
 
     def train(self, parameters={}):
         """Train the classifier.
 
-        The method trains a model using xgboost's algorithm
+        The method trains a model using XGBoost's algorithm
         which is a gradient boosting trees implementation.
         """
         if not parameters:
@@ -39,14 +38,14 @@ class XgboostClassifier(Classifier):
             raise UndefinedDatasetError("There is no training dataset")
         else:
             data_sequence, targets_sequence = separate_data_from_class(
-                    self._training_dataset)
+                self._training_dataset)
             data = np.array(data_sequence[1])
             targets = np.array(targets_sequence[1])
             train_dmatrix = xgb.DMatrix(data, label=targets)
 
         if self._validation_dataset:
             vdata_sequence, vtargets_sequence = separate_data_from_class(
-                    self._validation_dataset)
+                self._validation_dataset)
             vdata = np.array(vdata_sequence[1])
             vtargets = np.array(vtargets_sequence[1])
             validation_dmatrix = xgb.DMatrix(vdata, label=vtargets)
@@ -66,8 +65,8 @@ class XgboostClassifier(Classifier):
             try:
                 self.model.save_model(path)
             except Exception as e:
-                raise ClassifierSaveModelError("Error while saving trained model "\
-                        "due to the following: {}".format(e.message))
+                raise ClassifierSaveModelError("Error while saving trained model "
+                                               "due to the following: {}".format(e.message))
         else:
             raise UndefinedClassifierModelError("Unable to save null model")
 
@@ -78,11 +77,11 @@ class XgboostClassifier(Classifier):
         :type path: str
         """
         try:
-            self.model = xgb.Booster({'nthread':4})
+            self.model = xgb.Booster({'nthread': 4})
             self.model.load_model(path)
         except Exception as e:
-            raise ClassifierLoadModelError("Error while loading model due to "\
-                    "the following: {}".format(e.message))
+            raise ClassifierLoadModelError("Error while loading model due to "
+                                           "the following: {}".format(e.message))
 
     def evaluate(self, threshold=0.5):
         if not self.model:
@@ -98,7 +97,7 @@ class XgboostClassifier(Classifier):
         true_targets = test_targets_sequence[1]
 
         predicted_probabilities = []
-        predicted_targets= []
+        predicted_targets = []
 
         for test_row in test_data:
             probability = self.predict(test_row)
@@ -138,4 +137,3 @@ class XgboostClassifier(Classifier):
             score = float(ypredicted[0])
 
             return score
-

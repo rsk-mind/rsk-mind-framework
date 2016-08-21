@@ -1,10 +1,11 @@
 import argparse, logging, json
 
 from rsk_mind.dataset import Statistics, Splitter
-from rsk_mind.classifier.xgboost_classifier import XgboostClassifier
+from rsk_mind.classifier.xgboost_classifier import XGBoostClassifier
 
 logging.basicConfig()
 logger = logging.getLogger('rsk-mind')
+
 
 def default_settings(setting):
     ANALYSIS = {
@@ -16,8 +17,12 @@ def default_settings(setting):
 
     return setting
 
-def get_analytics(setting):
 
+def get_analytics(setting):
+    """Calculate analytics on dataset and prints it.
+
+    :param setting: project settings settings
+    """
     logger.info('Reading dataset')
     DATASOURCE = setting.DATASOURCE
     datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
@@ -39,12 +44,16 @@ def get_analytics(setting):
 
 
 def build_engine(setting):
+    """Build a new rsk-mind engine.
+
+    :param setting: project settings
+    """
     logger.info('Starting building of new engine')
     setting = setting.TRAINING
 
     if setting['algorithm']['name'] == 'xgboost':
         params = setting['algorithm']['parameters']
-        clf = XgboostClassifier()
+        clf = XGBoostClassifier()
 
         DATASOURCE = setting['algorithm']['dataset']
         datasource = DATASOURCE['class'](*DATASOURCE['params'])
@@ -52,24 +61,30 @@ def build_engine(setting):
         _original_dataset.applyTransformations()
         _splitter = Splitter(_original_dataset)
 
-
         clf.training_dataset = _splitter.training_dataset
         clf.validation_dataset = _splitter.validation_dataset
         clf.test_dataset = _splitter.test_dataset
 
         clf.train()
     else:
-        logger.error('Uknown algorithm %s' % setting['algorithm'])
-
+        logger.error('Unknown algorithm %s' % setting['algorithm'])
 
     logger.info('Finish building of new engine')
 
 
 def run_engine(setting):
+    """Start rsk-mind engine.
+
+    :param setting: project settings
+    """
     logger.info('Starting the %s engine' % setting.PROJECT_NAME)
 
 
 def transformation(setting):
+    """Transform dataset according the defined transformations.
+
+    :param setting: project settings
+    """
     DATASOURCE = setting.DATASOURCE
 
     datasource = DATASOURCE['IN']['class'](*DATASOURCE['IN']['params'])
@@ -83,6 +98,11 @@ def transformation(setting):
 
 
 def execute_from_command_line(argv, setting):
+    """
+    Controller of rsk_mind framework cli
+    :param argv: cmd arguments
+    :param setting: project settings
+    """
     argv = argv[1:]
 
     parser = argparse.ArgumentParser(description='')
@@ -99,9 +119,9 @@ def execute_from_command_line(argv, setting):
 
     if params.command == 'transformation':
         transformation(setting)
-    elif params.command == 'buildengine':
+    elif params.command == 'build':
         build_engine(setting)
-    elif params.command == 'runsengine':
+    elif params.command == 'run':
         run_engine(setting)
     elif params.command == 'analytics':
         get_analytics(setting)

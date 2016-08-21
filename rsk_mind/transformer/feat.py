@@ -1,5 +1,4 @@
 class Feat(object):
-
     def __init__(self):
         self.field_name = None
         self.parent = None
@@ -12,8 +11,8 @@ class Feat(object):
         fun = getattr(self.parent, 'get_%s' % self.field_name)
         return fun(x)
 
-class CompositeFeat(Feat):
 
+class CompositeFeat(Feat):
     def __init__(self, attrs):
         super(CompositeFeat, self).__init__()
         self.attrs = attrs

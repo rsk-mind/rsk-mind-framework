@@ -4,14 +4,29 @@ import os
 
 
 class SVMLightDataSource(DataSource):
+    """Handle SVMLight formatted datasource.
+
+    All the methods to handle a SVMLight formatted datasource.
+
+    """
 
     def __init__(self, path):
+        """Create a new SVMLight Datasource.
+
+        :param path: a path to SVMLight file.
+        """
         super(SVMLightDataSource, self).__init__(path)
 
     def read(self):
+        """Read SVMLight formatted datasource from specified path.
+
+        Read datasource and load it on memory.
+
+        :return: SVMLight
+        """
         # NOTE: svmlight format does not include
         # names for features, it only uses indexes.
-        # So headers will be auto-genenerated from
+        # So headers will be auto-generated from
         # indexes.
         header = []
         rows = []
@@ -48,7 +63,12 @@ class SVMLightDataSource(DataSource):
 
         return Dataset(header, rows)
 
-    def write(self, dataset):
+    def write(self, dataset, write_transformed=True):
+        """Save SVMLight formatted dataset on disk.
+
+        :param dataset:
+        :param write_transformed:
+        """
         # NOTE consider the last feature as the Target
         # Get the size of features excluding the last one
         # because it's the target.
@@ -64,7 +84,7 @@ class SVMLightDataSource(DataSource):
                 for i in range(0, features_without_target):
                     if row[i] != 0.0:
                         row_str += "{}:{} ".format(i, row[i])
-                # append target value to the begining and rstrip
+                # append target value to the beginning and rstrip
                 target_value = row[features_without_target]
                 row_str = ("{} ".format(target_value) + row_str).rstrip(" ")
                 # write row_str to file
