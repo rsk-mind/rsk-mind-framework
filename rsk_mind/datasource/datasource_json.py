@@ -5,24 +5,26 @@ from ..dataset import Dataset
 
 
 class JSONDataSource(DataSource):
-    """
-        Parse and read a data source on JSON Format.
+    """Parse and read a data source on JSON Format.
     """
 
     def __init__(self, path, target=None):
-        """
-            Create a new JSON Datasource with targe class name.
+        """Create a new JSON Datasource with targe class name.
 
-            Target class name is optional.
+        Target class name is optional.
+
+        :param path: a path to CSV file.
+        :param target: target class name is optional.
         """
         super(JSONDataSource, self).__init__(path)
         self.target = target
 
     def read(self):
-        """
-            Read a data source on JSON format.
+        """Read a data source on JSON format.
 
-            Always place target class on last column.
+        Always place target class on last column.
+
+        :return: a dataset.
         """
         with open(self.path, 'rb') as infile:
             reader = json.load(infile)
@@ -54,11 +56,13 @@ class JSONDataSource(DataSource):
         return Dataset(header, rows)
 
     def write(self, dataset, write_transformed=True):
-        """
-            Write data on file with JSON format.
+        """Write data on file with JSON format.
 
-            If transfomation had applied on dataset write transformed data
-            otherwise the same dataset.
+        If transformation had applied on dataset write transformed data
+        otherwise the same dataset.
+
+        :param dataset:
+        :param write_transformed:
         """
         if dataset.transformed_header is None or not write_transformed:
             header = dataset.header

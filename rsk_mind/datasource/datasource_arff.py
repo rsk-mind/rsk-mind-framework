@@ -4,10 +4,20 @@ from numbers import Number
 
 
 class ARFFDataSource(DataSource):
+    """Handle ARFF formatted datasource.
+
+    All the methods to handle a ARFF formatted datasource.
+    """
+
     def __init__(self, path):
         super(ARFFDataSource, self).__init__(path)
 
     def read(self):
+        """Read datasource from specified path
+
+        Read datasource and load it on memory.
+        :return: dataset
+        """
         header = []
         rows = []
 
@@ -44,7 +54,12 @@ class ARFFDataSource(DataSource):
 
         return Dataset(header, rows)
 
-    def write(self, dataset):
+    def write(self, dataset, write_transformed=True):
+        """Save ARFF formatted dataset on disk
+
+        :param dataset:
+        :param write_transformed:
+        """
         transformed_header = dataset.transformed_header
         transformed_rows = dataset.transformed_rows
         if (not transformed_header) or (not transformed_rows):

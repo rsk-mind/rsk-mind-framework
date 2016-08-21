@@ -4,24 +4,24 @@ from ..dataset import Dataset
 
 
 class CSVDataSource(DataSource):
-    """
-        Parse and read a data source on CSV Format.
+    """Parse and read a data source on CSV Format.
     """
 
     def __init__(self, path, target=None):
-        """
-            Create a new CSV Datasource with targe class name.
+        """Create a new CSV Datasource with target class name.
 
-            Target class name is optional.
+        :param path: a path to CSV file.
+        :param target: target class name is optional.
         """
         super(CSVDataSource, self).__init__(path)
         self.target = target
 
     def read(self):
-        """
-            Read a data source on CSV format.
+        """Read a data source on CSV format.
 
-            Always place target class on last column.
+        Always place target class on last column.
+
+        :return: a dataset.
         """
         with open(self.path, 'rb') as infile:
             reader = csv.reader(infile)
@@ -50,11 +50,13 @@ class CSVDataSource(DataSource):
         return Dataset(header, rows)
 
     def write(self, dataset, write_transformed=True):
-        """
-            Write data on file with csv format.
+        """Write data on file with csv format.
 
-            If transfomation had applied on dataset write transformed data
-            otherwise the same dataset.
+        If transformation had applied on dataset write transformed data
+        otherwise the same dataset.
+
+        :param dataset:
+        :param write_transformed:
         """
         if dataset.transformed_header is None or not write_transformed:
             header = dataset.header

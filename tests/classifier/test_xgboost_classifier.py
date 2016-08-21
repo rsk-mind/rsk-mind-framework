@@ -5,7 +5,7 @@ from nose.tools import (
 )
 from random import randint
 import os
-from rsk_mind.classifier import XgboostClassifier
+from rsk_mind.classifier import XGBoostClassifier
 from rsk_mind.dataset import (
     Splitter,
     Dataset
@@ -41,7 +41,7 @@ class TestXgboostClassifier(object):
 
         cls.model_path = os.path.join(os.getcwd(),'xgb_model.bin')
 
-        cls.test_classifier = XgboostClassifier()
+        cls.test_classifier = XGBoostClassifier()
 
     @classmethod
     def teardown_class(cls):

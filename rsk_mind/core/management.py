@@ -8,10 +8,9 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 
 
 def start_app(project_name):
-    """
-        Initialize new project with default options
+    """Initialize new project with default options
 
-        :param project_name: name of the new project
+    :param project_name: name of the new project
     """
     top_dir = os.path.join(os.getcwd(), project_name)
     if not os.path.exists(top_dir):

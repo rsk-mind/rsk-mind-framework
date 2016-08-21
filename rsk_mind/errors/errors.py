@@ -6,7 +6,6 @@ by RSKMind framework.
 
 
 class RSKMindError(Exception):
-
     """RSKMindError.
 
     The base class of the framework's errors.
@@ -18,55 +17,55 @@ class RSKMindError(Exception):
     def __str__(self):
         return repr(self.message)
 
-class DatasourceReadError(RSKMindError):
 
+class DatasourceReadError(RSKMindError):
     """DatasourceReadError.
 
-    Error occuring while reading from a datasource.
+    Error occurring while reading from a datasource.
     """
 
     def __init__(self, message=None):
         msg = message or "Error while reading from datasource"
         super(DatasourceReadError, self).__init__(msg)
 
-class DatasourceWriteError(RSKMindError):
 
+class DatasourceWriteError(RSKMindError):
     """DatasourceWriteError.
 
-    Error occuring while writing to a datasource.
+    Error occurring while writing to a datasource.
     """
 
     def __init__(self, message=None):
         msg = message or "Error while writing to datasource"
         super(DatasourceWriteError, self).__init__(msg)
 
-class ClassifierLoadModelError(RSKMindError):
 
+class ClassifierLoadModelError(RSKMindError):
     """ClassifierLoadModelError.
 
-    Error occuring when loading a classifier's model.
+    Error occurring when loading a classifier's model.
     """
 
     def __init__(self, message=None):
         msg = message or "Error while loading classifier model"
         super(ClassifierLoadModelError, self).__init__(msg)
 
-class ClassifierSaveModelError(RSKMindError):
 
+class ClassifierSaveModelError(RSKMindError):
     """ClassifierSaveModelError.
 
-    Error occuring when saving a classifier's model.
+    Error occurring when saving a classifier's model.
     """
 
     def __init__(self, message=None):
         msg = message or "Error while saving classifier model"
         super(ClassifierSaveModelError, self).__init__(msg)
 
-class InsufficientDatasetError(RSKMindError):
 
+class InsufficientDatasetError(RSKMindError):
     """InsufficientDatasetError.
 
-    Error occuring when dataset is very small.
+    Error occurring when dataset is very small.
     The case that makes sense is the training
     dataset.
     """
@@ -75,25 +74,24 @@ class InsufficientDatasetError(RSKMindError):
         msg = message or "Dataset is not sufficient."
         super(InsufficientDatasetError, self).__init__(msg)
 
-class UndefinedDatasetError(RSKMindError):
 
+class UndefinedDatasetError(RSKMindError):
     """UndefinedDatasetError.
 
-    Error occuring when dataset is None.
+    Error occurring when dataset is None.
     """
 
     def __init__(self, message=None):
         msg = message or "Dataset is none."
         super(UndefinedDatasetError, self).__init__(msg)
 
-class UndefinedClassifierModelError(RSKMindError):
 
+class UndefinedClassifierModelError(RSKMindError):
     """UndefinedClassifierModelError.
 
-    Error occuring when classifier's model is none.
+    Error occurring when classifier's model is none.
     """
 
     def __init__(self, message=None):
         msg = message or "Model is none."
         super(UndefinedClassifierModelError, self).__init__(msg)
-

@@ -4,13 +4,20 @@ class DataSource(object):
         self.path = path
 
     def read(self):
-        """
-            Read a data source.
+        """Read a data source.
 
-            Always place traget class on last column.
+        Always place target class on last column.
+
+        :return: a dataset
         """
         raise NotImplementedError("")
 
-    def write(self, dataset):
-        """ """
+    def write(self, dataset, write_transformed=True):
+        """Save data source
+
+        Save on disk
+
+        :param dataset:
+        :param write_transformed:
+        """
         raise NotImplementedError("")

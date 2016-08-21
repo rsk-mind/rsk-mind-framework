@@ -7,6 +7,7 @@ then this is the file one can add his/her
 method.
 """
 
+
 def separate_data_from_class(dataset):
     """Separate features from classes.
 
@@ -24,12 +25,13 @@ def separate_data_from_class(dataset):
     rows = list(dataset.transformed_rows)
 
     for row in rows:
-        features = row[:len(row)-1]
-        target = row[len(row)-1]
+        features = row[:len(row) - 1]
+        target = row[len(row) - 1]
         data.append(features)
         targets.append(target)
 
     return [('data', data), ('targets', targets)]
+
 
 def get_column_from_dataset_by_index(dataset, column_index, from_tranformed=True):
     """Get a column from dataset.
@@ -48,7 +50,7 @@ def get_column_from_dataset_by_index(dataset, column_index, from_tranformed=True
         header = dataset.header
         rows = dataset.rows
 
-    if column_index >=0 and column_index < len(header):
+    if 0 <= column_index < len(header):
         feature_name = header[column_index]
         column = []
         for row in rows:
@@ -57,6 +59,7 @@ def get_column_from_dataset_by_index(dataset, column_index, from_tranformed=True
         raise IndexError("Invalid column index {}".format(column_index))
 
     return [('feature', feature_name), ('index', column_index), ('column', column)]
+
 
 def strings_to_numeric(strings_list):
     """Convert strings to numbers.

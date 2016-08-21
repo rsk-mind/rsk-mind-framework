@@ -35,7 +35,7 @@ class Dataset:
                 try:
                     i = self.header.index(feat)
                     trans_feat = self.transformer.get_transformer_func(feat)(row[i])
-                except:
+                except: # TODO define exception on transformation apply function
                     trans_feat = self.transformer.get_transformer_func(feat)(self.header, row)
 
                 transformed_row += trans_feat

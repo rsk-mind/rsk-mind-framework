@@ -7,4 +7,3 @@ from errors import (
     UndefinedDatasetError,
     UndefinedClassifierModelError
 )
-
