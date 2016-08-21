@@ -12,7 +12,7 @@ from rsk_mind.dataset import (
 )
 
 
-class TestXgboostClassifier(object):
+class TestXGBoostClassifier(object):
 
     @classmethod
     def setup_class(cls):
