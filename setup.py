@@ -1,29 +1,37 @@
 #!/usr/bin/env python
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 __version__ = "0.1.1"
 
 setup(
-    name='rsk_mind',
+    name='RSK Mind',
     version=__version__,
     description='Framework for machine learning platform',
     keywords='machine learning deep learning',
-    url='git@bitbucket.org:rasarmy/fraud-backend.git',
-    author='RSK Mind',
-    author_email='',
+    url='git@github.com:rsk-mind/rsk-mind-framework.git',
+    author='RSK Project',
+    author_email='admin@rsk-project.com',
     license='MIT',
-    packages=['rsk_mind', 'rsk_mind.engine', 'rsk_mind.input',
-              'rsk_mind.classifier', 'rsk_mind.transformer',
-              'rsk_mind.transformer.filter'],
-    # dependent packages
+    scripts=['rsk_mind/bin/rskmind-admin.py'],
+    entry_points={'console_scripts': [
+        'rskmind-admin = rskmind.core.management:execute_from_command_line',
+    ]},
+    include_package_data=True,
+    packages=find_packages(exclude=('tests', 'tests.*', 'doc', 'tests.*')),
     install_requires=[
-            'numpy',
-            'scipy',
             'xgboost==0.4a30',
             'geoip2',
-            'scikit-learn'
+            'Jinja2',
+            'scikit-learn',
+            'scipy',
+            'cython'
+            'Jinja2',
+            'pandas',
+            'numpy'
     ],
     extras_require={
-            'docs': ['sphinx']
+            'docs': ['sphinx', 'sphinx_rtd_theme'],
+            'tests': ['nose']
     },
-    zip_safe=False)
+    zip_safe=False
+)
