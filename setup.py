@@ -20,13 +20,12 @@ setup(
     packages=find_packages(exclude=('tests', 'tests.*', 'doc', 'tests.*')),
     install_requires=[
             'xgboost==0.4a30',
-            'geoip2',
-            'Jinja2',
+            'geoip2==2.4.0',
+            'Jinja2==2.8',
             'scikit-learn',
             'scipy',
-            'Jinja2',
             'pandas==0.18.1',
-            'numpy'
+            'numpy',
             'cython'
     ],
     extras_require={
