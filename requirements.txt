@@ -7,3 +7,4 @@ geoip2
 Jinja2
 scikit-learn
 nose
+pandas==0.18.1

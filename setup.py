@@ -25,7 +25,7 @@ setup(
             'scikit-learn',
             'scipy',
             'Jinja2',
-            'pandas',
+            'pandas==0.18.1',
             'numpy'
             'cython'
     ],
