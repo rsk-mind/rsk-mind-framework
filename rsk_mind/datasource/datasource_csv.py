@@ -5,7 +5,9 @@ from ..dataset import Dataset
 
 
 class CSVDataSource(DataSource):
-    """Parse and read a data source on CSV Format.
+    """Handle CSV formatted datasource.
+
+    All the methods to handle a CSV formatted datasource.
     """
 
     def __init__(self, path, target=None):

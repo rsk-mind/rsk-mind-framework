@@ -7,7 +7,9 @@ from ..dataset import PandasDataset
 
 
 class CSVStreamDataSource(DataSource):
-    """Parse and read a data source on CSV Format as a stream.
+    """Handle CSV formatted datasource as a stream.
+
+    All the methods to handle a CSV formatted datasource as a stream.
     """
 
     def __init__(self, path, chunk=10, target=None):

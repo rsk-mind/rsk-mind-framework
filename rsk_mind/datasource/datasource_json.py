@@ -5,7 +5,9 @@ from ..dataset import Dataset
 
 
 class JSONDataSource(DataSource):
-    """Parse and read a data source on JSON Format.
+    """Handle JSON formatted datasource.
+
+    All the methods to handle a JSON formatted datasource.
     """
 
     def __init__(self, path, target=None):

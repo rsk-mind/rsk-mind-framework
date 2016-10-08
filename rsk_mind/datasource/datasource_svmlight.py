@@ -8,7 +8,6 @@ class SVMLightDataSource(DataSource):
     """Handle SVMLight formatted datasource.
 
     All the methods to handle a SVMLight formatted datasource.
-
     """
 
     def __init__(self, path):
