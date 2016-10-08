@@ -100,8 +100,8 @@ def transformation(setting):
 
 
 def execute_from_command_line(argv, setting):
-    """
-    Controller of rsk_mind framework cli
+    """Controller of rsk_mind framework cli
+
     :param argv: cmd arguments
     :param setting: project settings
     """

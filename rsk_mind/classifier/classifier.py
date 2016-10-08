@@ -1,3 +1,6 @@
+from abc import ABCMeta, abstractmethod
+
+
 class Classifier(object):
     """Classifier abstract class.
 
@@ -6,6 +9,8 @@ class Classifier(object):
     to create a custom classifier all he needs to do
     is implement the bellow methods.
     """
+
+    __metaclass__ = ABCMeta
 
     def __init__(self):
         """Initialize."""
@@ -56,6 +61,7 @@ class Classifier(object):
         """
         self._validation_dataset = validation_set
 
+    @abstractmethod
     def train(self, parameters={}):
         """Train the classifier.
 
@@ -64,6 +70,7 @@ class Classifier(object):
         """
         pass
 
+    @abstractmethod
     def save_model(self, path):
         """Save classifier model to disk.
 
@@ -72,6 +79,7 @@ class Classifier(object):
         """
         pass
 
+    @abstractmethod
     def load_model(self, path):
         """Load model to classifier from disk.
 
@@ -80,6 +88,7 @@ class Classifier(object):
         """
         pass
 
+    @abstractmethod
     def evaluate(self, threshold=0.5):
         """Evaluate the training algorithm.
 
@@ -90,6 +99,7 @@ class Classifier(object):
         """
         pass
 
+    @abstractmethod
     def predict(self, instance):
         """Classify an instance.
 

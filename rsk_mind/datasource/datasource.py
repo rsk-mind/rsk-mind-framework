@@ -1,7 +1,13 @@
+from abc import ABCMeta, abstractmethod
+
+
 class DataSource(object):
+    __metaclass__ = ABCMeta
+
     def __init__(self, path):
         self.path = path
 
+    @abstractmethod
     def read(self):
         """Read a data source.
 
@@ -9,8 +15,9 @@ class DataSource(object):
 
         :return: a dataset
         """
-        raise NotImplementedError("")
+        pass
 
+    @abstractmethod
     def write(self, dataset, write_transformed=True):
         """Save data source
 
@@ -19,4 +26,4 @@ class DataSource(object):
         :param dataset:
         :param write_transformed:
         """
-        raise NotImplementedError("")
+        pass
