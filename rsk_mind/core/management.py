@@ -1,5 +1,6 @@
-import argparse, jinja2, os, rsk_mind
-
+import argparse
+import jinja2
+import os
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.PackageLoader('rsk_mind', 'conf'),

@@ -6,7 +6,6 @@ from sklearn.metrics import (
 
 
 class Evaluation(object):
-
     """Evaluation class.
 
     This class is only a wrapper class for classification
@@ -80,4 +79,3 @@ class Evaluation(object):
         """
         auc = roc_auc_score(y_true, y_score)
         self._summary['auc'] = auc
-

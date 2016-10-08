@@ -1,6 +1,7 @@
+from numbers import Number
+
 from datasource import DataSource
 from ..dataset import Dataset
-from numbers import Number
 
 
 class ARFFDataSource(DataSource):

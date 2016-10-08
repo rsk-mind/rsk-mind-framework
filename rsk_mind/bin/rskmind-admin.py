@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-from rsk_mind.core import management
-
 import sys
+
+from rsk_mind.core import management
 
 if __name__ == "__main__":
     management.execute_from_command_line(sys.argv)

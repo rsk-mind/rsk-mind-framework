@@ -1,14 +1,15 @@
 import numpy as np
 import xgboost as xgb
+
 from classifier import Classifier
-from rsk_mind.evaluation import Evaluation
-from rsk_mind.utils import separate_data_from_class
 from rsk_mind.errors import (
     UndefinedDatasetError,
     UndefinedClassifierModelError,
     ClassifierLoadModelError,
     ClassifierSaveModelError
 )
+from rsk_mind.evaluation import Evaluation
+from rsk_mind.utils import separate_data_from_class
 
 
 class XGBoostClassifier(Classifier):

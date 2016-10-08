@@ -1,6 +1,7 @@
+import os
+
 from datasource import DataSource
 from ..dataset import Dataset
-import os
 
 
 class SVMLightDataSource(DataSource):

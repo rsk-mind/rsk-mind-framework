@@ -1,5 +1,6 @@
-from random import shuffle
 from math import ceil
+from random import shuffle
+
 from dataset import Dataset
 
 
