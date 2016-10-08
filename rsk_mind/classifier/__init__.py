@@ -2,6 +2,6 @@ from classifier import (
     Classifier,
 )
 
-from xgboost_classifier import (
+from classifier_xgboost import (
     XGBoostClassifier,
 )

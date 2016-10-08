@@ -2,7 +2,7 @@ import argparse
 import json
 import logging
 
-from rsk_mind.classifier.xgboost_classifier import XGBoostClassifier
+from rsk_mind.classifier.classifier_xgboost import XGBoostClassifier
 from rsk_mind.dataset import Statistics, Splitter
 
 logging.basicConfig()
