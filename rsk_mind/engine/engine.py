@@ -17,10 +17,12 @@ class Engine(object):
         pass
 
     @abstractmethod
-    def build(self, rebuild=False):
+    def build(self, setting, rebuild=False):
         """Build new model from dataset.
 
         if rebuild flag is True overrides previous model.
+        :param setting
+        :param rebuild
         :return: a data mining model.
         """
         pass
