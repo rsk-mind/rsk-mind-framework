@@ -1,5 +1,5 @@
 rsk_mind
-=============
+========
 
 .. toctree::
    :maxdepth: 4

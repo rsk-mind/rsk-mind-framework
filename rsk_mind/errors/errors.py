@@ -15,7 +15,7 @@ class RSKMindError(Exception):
         self.message = message or "General RSKMind framework error"
 
     def __str__(self):
-        return repr(self.message)
+        return self.message
 
 
 class DatasourceReadError(RSKMindError):
