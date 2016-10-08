@@ -40,8 +40,8 @@ def get_column_from_dataset_by_index(dataset, column_index, from_tranformed=True
     :type dataset: Dataset
     :param column_index: index of dataset's column
     :type column_index: int
-    :param from_transformed: indicates if the column should be taken from transformed_rows
-    :param from_transformed: bool
+    :param from_tranformed: indicates if the column should be taken from transformed_rows
+    :type from_tranformed: bool
     """
     if from_tranformed:
         header = dataset.transformed_header
@@ -64,10 +64,8 @@ def get_column_from_dataset_by_index(dataset, column_index, from_tranformed=True
 def strings_to_numeric(strings_list):
     """Convert strings to numbers.
 
-    This method will try to convert
-    a list of strings such as
-    ['1', '0.0', '0', '1.0'] to its
-    respective list of numerical values
+    This method will try to convert a list of strings such as
+    ['1', '0.0', '0', '1.0'] to its respective list of numerical values
     [1, 0, 0, 1]
 
     :param strings_list: a list of strings
@@ -82,3 +80,7 @@ def strings_to_numeric(strings_list):
             raise ve
 
     return [('converted', converted)]
+
+
+def get_datasource_from_setting(datasource):
+    return datasource['class'](*datasource['params'])

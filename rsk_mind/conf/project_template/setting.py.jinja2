@@ -1,4 +1,5 @@
 from rsk_mind.datasource import *
+from rsk_mind.classifier import *
 
 from transformer import CustomTransformer
 
@@ -25,7 +26,7 @@ TRANSFORMER = CustomTransformer
 TRAINING = {
     'algorithms' : [
         {
-            'name': 'xgboost',
+            'classifier': XGBoostClassifier,
             'parameters' : {
                 'bst:max_depth': 7,
                 'bst:eta': 0.3,

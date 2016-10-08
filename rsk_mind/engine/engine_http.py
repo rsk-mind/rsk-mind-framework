@@ -1,4 +1,7 @@
+from rsk_mind.core.commands import logger
+from rsk_mind.dataset import Splitter
 from rsk_mind.engine import Engine
+from rsk_mind.utils import get_datasource_from_setting
 
 
 class HTTPEngine(Engine):
@@ -9,12 +12,13 @@ class HTTPEngine(Engine):
 
         setting = setting.TRAINING
 
-        if setting['algorithm']['name'] == 'xgboost':
-            params = setting['algorithm']['parameters']
-            clf = XGBoostClassifier()
+        algorithms = setting['algorithms']
 
-            DATASOURCE = setting['algorithm']['dataset']
-            datasource = DATASOURCE['class'](*DATASOURCE['params'])
+        for algorithm in algorithms:
+            params = algorithm['parameters']
+            clf = algorithm['classifier']
+
+            datasource = get_datasource_from_setting(algorithm['dataset'])
             _original_dataset = datasource.read()
             _original_dataset.applyTransformations()
             _splitter = Splitter(_original_dataset)
